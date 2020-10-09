@@ -9,12 +9,12 @@ script:
     - docker run lendap/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t lendap/multi-client ./client
-    - docker build -t lendap/multi-nginx ./nginx
-    - docker build -t lendap/multi-server ./server
-    - docker build -t lendap/multi-worker ./worker
+    - docker build -t czerwonykalafior/multi-client ./client
+    - docker build -t czerwonykalafior/multi-nginx ./nginx
+    - docker build -t czerwonykalafior/multi-server ./server
+    - docker build -t czerwonykalafior/multi-worker ./worker
     - echo "$docker_pass" | docker login -u "$docker_id" --password-stdin
-    - docker push lendap/multi-client 
-    - docker push lendap/multi-nginx 
-    - docker push lendap/multi-server 
-    - docker push lendap/multi-worker 
+    - docker push czerwonykalafior/multi-client 
+    - docker push czerwonykalafior/multi-nginx 
+    - docker push czerwonykalafior/multi-server 
+    - docker push czerwonykalafior/multi-worker 
