@@ -1,0 +1,20 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t lendap/react_test -f ./client/Dockerfile.dev
+
+script:
+    - docker run lendap/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t lendap/multi-client ./client
+    - docker build -t lendap/multi-nginx ./nginx
+    - docker build -t lendap/multi-server ./server
+    - docker build -t lendap/multi-worker ./worker
+    - echo "$docker_pass" | docker login -u "$docker_id" --password-stdin
+    - docker push lendap/multi-client 
+    - docker push lendap/multi-nginx 
+    - docker push lendap/multi-server 
+    - docker push lendap/multi-worker 
