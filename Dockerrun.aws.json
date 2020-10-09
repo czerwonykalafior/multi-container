@@ -4,7 +4,21 @@
         {
             "name": "client",
             "image": "czerwonykalafior/multi-client",
-
-        }
+            "hostname": "client",
+            "essential": false            
+        },
+        {
+            "name": "server",
+            "image": "czerwonykalafior/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "czerwonykalafior/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        
     ]
 }
