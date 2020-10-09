@@ -1,24 +1,35 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": [
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "czerwonykalafior/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "czerwonykalafior/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "czerwonykalafior/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "czerwonykalafior/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
         {
-            "name": "client",
-            "image": "czerwonykalafior/multi-client",
-            "hostname": "client",
-            "essential": false            
-        },
-        {
-            "name": "server",
-            "image": "czerwonykalafior/multi-server",
-            "hostname": "api",
-            "essential": false
-        },
-        {
-            "name": "worker",
-            "image": "czerwonykalafior/multi-worker",
-            "hostname": "worker",
-            "essential": false
-        },
-        
-    ]
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ]
+    }
+  ]
 }
